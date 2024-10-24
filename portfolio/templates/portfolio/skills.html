@@ -1,0 +1,32 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+    <h2>Skills</h2>
+
+    <!-- Add New Skill Form -->
+    <form method="POST" action="{% url 'skill_create' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Skill</button>
+    </form>
+
+    <!-- Display Existing Skills -->
+    <div class="skills-container">
+        {% regroup skills by get_category_display as category_list %}
+        {% for category in category_list %}
+            <div class="skill-category">
+                <h3>{{ category.grouper }}</h3>
+                <ul>
+                    {% for skill in category.list %}
+                        <li>{{ skill.name }}
+                            <a href="{% url 'skill_edit' skill.pk %}">Edit</a> | 
+                            <a href="{% url 'skill_delete' skill.pk %}">Delete</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% empty %}
+            <p>No skills available yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

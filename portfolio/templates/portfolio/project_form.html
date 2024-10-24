@@ -1,0 +1,72 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}
+    {{ form_title }}
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>{{ form_title }}</h2>
+        <form method="post" enctype="multipart/form-data">  <!-- Correct enctype for file uploads -->
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="form-actions">
+                <button type="submit" class="btn save-btn">Save</button>
+                <a href="{% url 'projects' %}" class="btn cancel-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+<style>
+    .form-container {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .save-btn {
+        background-color: #28a745;
+    }
+
+    .save-btn:hover {
+        background-color: #218838;
+    }
+
+    .cancel-btn {
+        background-color: #dc3545;
+    }
+
+    .cancel-btn:hover {
+        background-color: #c82333;
+    }
+</style>

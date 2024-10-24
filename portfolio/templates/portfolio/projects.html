@@ -1,0 +1,24 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+    <h1>My Projects</h1>
+    <a href="{% url 'project_create' %}" class="btn">Add New Project</a>
+
+    <div class="project-grid">
+        {% for project in projects %}
+            <div class="project-item">
+                <h3>{{ project.title }}</h3>
+                {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+                <p>{{ project.description }}</p>
+                <div class="project-actions">
+                    <a href="{% url 'project_edit' project.id %}" class="btn">Edit</a>
+                    <a href="{% url 'project_delete' project.id %}" class="btn delete-btn">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
