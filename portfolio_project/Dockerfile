@@ -20,3 +20,4 @@ RUN python manage.py collectstatic --noinput
 
 # Run the Django application
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "portfolio_project.wsgi:application"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "your_project_name.wsgi:application"]
