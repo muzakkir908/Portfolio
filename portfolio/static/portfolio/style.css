@@ -496,7 +496,7 @@ form {
 
 /* Footer */
 footer {
-    background-color: rgba(44, 62, 80, 0.8);  /* Semi-transparent dark blue */
+    /* background-color: rgba(44, 62, 80, 0.8);  Semi-transparent dark blue */
     color: white;
     text-align: center;
     padding: 10px;
