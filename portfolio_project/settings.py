@@ -17,7 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
-SECRET_KEY = 'django-insecure-irt2m_ogegke2e$0b0=l!h%=b=9%eaxalw5=dd)d9jp6p(4#we'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default-development-key')
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 

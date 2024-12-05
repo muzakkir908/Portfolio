@@ -15,7 +15,7 @@ urlpatterns = [
     path('skills/create/', views.skill_create, name='skill_create'),
     path('skills/edit/<int:pk>/', views.skill_edit, name='skill_edit'),
     path('skills/delete/<int:pk>/', views.skill_delete, name='skill_delete'),
-    path('export-pdf/', views.export_portfolio_pdf, name='export_pdf'),  
+    # path('export-pdf/', views.export_portfolio_pdf, name='export_pdf'),  
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('logout/', views.custom_logout, name='logout'),
 ]
