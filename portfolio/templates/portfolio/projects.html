@@ -1,28 +1,246 @@
 {% extends 'portfolio/base.html' %}
 
 {% block content %}
-    <section class="projects">
+<section class="projects">
+    <div class="projects-header">
         <h2>My Projects</h2>
-        <div class="add-button-container">
-            <a href="{% url 'project_create' %}" class="add-project-btn">Add New Project</a>
-        </div>
+        <!-- <a href="{% url 'project_create' %}" class="add-btn">
+            <i class="fas fa-plus"></i> Add New Project
+        </a> -->
+    </div>
 
-        <div class="project-grid">
-            {% for project in projects %}
-                <div class="project-item">
-                    <h3>{{ project.title }}</h3>
+    <div class="project-grid">
+        {% for project in projects %}
+            <div class="project-card">
+                <div class="project-image-container">
                     {% if project.image %}
                         <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
                     {% else %}
-                        <p>No image available</p>
+                        <div class="no-image">
+                            <i class="fas fa-image"></i>
+                            <span>No image available</span>
+                        </div>
                     {% endif %}
-                    <p>{{ project.description }}</p>
-                    <div class="project-actions">
-                        <a href="{% url 'project_edit' project.id %}">Edit</a>
-                        <a href="{% url 'project_delete' project.id %}">Delete</a>
-                    </div>
                 </div>
-            {% endfor %}
+                <div class="project-content">
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-description">{{ project.description }}</p>
+                    {% if request.user.is_staff %}
+                    <div class="project-controls">
+                        <a href="{% url 'project_edit' project.id %}" class="control-link edit">
+                            <span class="control-icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span class="control-text">Edit</span>
+                        </a>
+                        <div class="control-divider"></div>
+                        <a href="{% url 'project_delete' project.id %}" class="control-link delete">
+                            <span class="control-icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <span class="control-text">Delete</span>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    {% if request.user.is_staff %}
+        <div class="add-button-container">
+            <a href="{% url 'project_create' %}" class="add-btn">
+                <i class="fas fa-plus"></i> Add New Project
+            </a>
         </div>
-    </section>
+    {% endif %}
+</section>
+
+<style>
+    .projects {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .projects-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .projects-header h2 {
+        font-size: 2em;
+        color: #2c3e50;
+    }
+
+    .add-btn {
+        background: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .add-btn:hover {
+        background: #45a049;
+        transform: translateY(-1px);
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .project-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .project-image-container {
+        height: 200px;
+        overflow: hidden;
+        background: #f8f9fa;
+    }
+
+    .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image {
+        transform: scale(1.05);
+    }
+
+    .no-image {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #adb5bd;
+        background: #f8f9fa;
+    }
+
+    .no-image i {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+
+    .project-content {
+        padding: 20px;
+    }
+
+    .project-title {
+        font-size: 1.3em;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .project-description {
+        color: #6c757d;
+        font-size: 0.95em;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .project-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+
+    .control-link {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    .control-divider {
+        width: 1px;
+        height: 20px;
+        background-color: #dee2e6;
+        margin: 0 4px;
+    }
+
+    .edit {
+        color: #2196F3;
+    }
+
+    .edit:hover {
+        background: rgba(33, 150, 243, 0.1);
+        color: #1976D2;
+    }
+
+    .delete {
+        color: #dc3545;
+    }
+
+    .delete:hover {
+        background: rgba(220, 53, 69, 0.1);
+        color: #c82333;
+    }
+
+    .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 60px;
+        background: white;
+        border-radius: 12px;
+        color: #6c757d;
+    }
+
+    .empty-state i {
+        font-size: 3em;
+        margin-bottom: 15px;
+        color: #adb5bd;
+    }
+
+    @media (max-width: 768px) {
+        .projects-header {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .project-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .project-content {
+            padding: 15px;
+        }
+    }
+</style>
 {% endblock %}
