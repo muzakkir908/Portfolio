@@ -10,20 +10,25 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 
+@require_http_methods(["POST"])
+@csrf_protect
 def custom_logout(request):
     logout(request)
     return redirect('home')
 
-
 # Home view
+@require_http_methods(["GET"])
 def home(request):
     return render(request, 'portfolio/home.html')
 
 # Contact view
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -58,11 +63,14 @@ def contact_view(request):
     return render(request, 'portfolio/contact.html', {'form': form, 'contact_details': contact_details})
 
 # Projects Views
+@require_http_methods(["GET"])
 def projects(request):
     all_projects = Project.objects.all()
     return render(request, 'portfolio/projects.html', {'projects': all_projects})
 
 @staff_member_required
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def project_create(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
@@ -75,6 +83,8 @@ def project_create(request):
     return render(request, 'portfolio/project_form.html', {'form': form, 'form_title': 'Create Project'})
 
 @staff_member_required
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def project_edit(request, pk):
     project = get_object_or_404(Project, pk=pk)
     if request.method == 'POST':
@@ -88,6 +98,8 @@ def project_edit(request, pk):
     return render(request, 'portfolio/project_form.html', {'form': form, 'form_title': 'Edit Project'})
 
 @staff_member_required
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def project_delete(request, pk):
     project = get_object_or_404(Project, pk=pk)
     if request.method == 'POST':
@@ -97,11 +109,14 @@ def project_delete(request, pk):
     return render(request, 'portfolio/project_confirm_delete.html', {'project': project})
 
 # Skills Views
+@require_http_methods(["GET"])
 def skill_list(request):
     skills = Skill.objects.all().order_by('category', 'name')
     return render(request, 'portfolio/skills.html', {'skills': skills})
 
 @staff_member_required
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def skill_create(request):
     if request.method == 'POST':
         form = SkillForm(request.POST)
@@ -114,6 +129,8 @@ def skill_create(request):
     return render(request, 'portfolio/skill_form.html', {'form': form})
 
 @staff_member_required
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def skill_edit(request, pk):
     skill = get_object_or_404(Skill, pk=pk)
     if request.method == 'POST':
@@ -127,6 +144,8 @@ def skill_edit(request, pk):
     return render(request, 'portfolio/skill_form.html', {'form': form})
 
 @staff_member_required
+@csrf_protect
+@require_http_methods(["GET", "POST"])
 def skill_delete(request, pk):
     skill = get_object_or_404(Skill, pk=pk)
     if request.method == 'POST':
