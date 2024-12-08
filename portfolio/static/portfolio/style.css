@@ -5,7 +5,6 @@ body {
     background: linear-gradient(135deg, #667eea, #764ba2);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
-    /* padding-bottom: 1px; */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -13,25 +12,17 @@ body {
 }
 
 @keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .navbar {
     display: flex;
-    justify-content: flex-start; /* Aligns items to the left */
-    align-items: center; /* Ensures the items are vertically centered */
-    padding-left: 10px; /* Optional, to add some left padding if needed */
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
 }
-
-
 
 .navbar a {
     transition: color 0.3s ease;
@@ -41,7 +32,6 @@ body {
     color: #e2e8f0;
 }
 
-/* Hero section */
 .hero {
     padding: 120px 20px;
     text-align: center;
@@ -86,11 +76,9 @@ body {
 
 .logo {
     position: relative;
-    left: -5px; /* Moves the logo 20px to the left */
+    left: -5px;
 }
 
-
-/* Skills Section */
 .skills {
     padding: 30px 10px;
     text-align: center;
@@ -103,8 +91,6 @@ body {
 }
 
 .skills h2 {
-    /* padding-top: 20px; */
-    /* margin-bottom: 40px; */
     font-size: 2.5em;
     color: #2c3e50;
 }
@@ -158,7 +144,6 @@ body {
     color: #2ecc71;
 }
 
-/* Edit and Delete buttons */
 .skill-category ul li a {
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
@@ -185,9 +170,8 @@ body {
     background-color: #B91C1C;
 }
 
-/* Add Skill Form */
 form {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 8px;
@@ -212,7 +196,6 @@ form button[type="submit"]:hover {
     background-color: #4338CA;
 }
 
-/* Form inputs */
 form input[type="text"],
 form textarea,
 form select {
@@ -220,47 +203,18 @@ form select {
     padding: 0.5rem;
     border-radius: 0.375rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.9); /* Changed to nearly white background */
-    color: #333333; /* Dark text color */
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333333;
     margin-bottom: 1rem;
 }
 
-form input[type="text"]::placeholder,
-form textarea::placeholder,
-form select::placeholder {
-    color: #666666; /* Darker placeholder text for better visibility */
-}
-
-form input[type="text"]:focus,
-form textarea:focus,
-form select:focus {
-    outline: none;
-    border-color: #4F46E5;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
-    background-color: white; /* Pure white background when focused */
-}
-
-/* Label styling */
 form label {
     display: block;
     font-weight: 500;
     margin-bottom: 0.5rem;
-    color: white; /* Keep labels white since they're on the dark background */
+    color: white;
 }
 
-/* Form background */
-form {
-    background-color: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Delete confirmation page */
 .btn-danger {
     background-color: #DC2626;
     color: white;
@@ -290,7 +244,6 @@ form {
     background-color: #4B5563;
 }
 
-/* Projects Section */
 .projects {
     padding: 30px 40px;
     text-align: center;
@@ -303,8 +256,6 @@ form {
 }
 
 .projects h2 {
-    /* padding-top: 10px; */
-    /* margin-bottom: 40px; */
     font-size: 2.5em;
     color: #2c3e50;
     font-weight: 700;
@@ -338,7 +289,6 @@ form {
     font-weight: 700;
 }
 
-/* Project Action Buttons Container */
 .project-actions {
     display: flex;
     gap: 8px;
@@ -346,7 +296,6 @@ form {
     justify-content: flex-end;
 }
 
-/* Edit and Delete buttons */
 .project-item a[href*="edit"],
 .project-item a[href*="delete"] {
     padding: 0.25rem 0.75rem;
@@ -358,7 +307,6 @@ form {
     display: inline-block;
 }
 
-/* Edit button */
 .project-item a[href*="edit"] {
     background-color: #4F46E5;
 }
@@ -367,7 +315,6 @@ form {
     background-color: #4338CA;
 }
 
-/* Delete button */
 .project-item a[href*="delete"] {
     background-color: #DC2626;
 }
@@ -376,7 +323,6 @@ form {
     background-color: #B91C1C;
 }
 
-/* Common button styles for Add Skill and Add Project */
 .add-skill-btn,
 .add-project-btn {
     display: inline-block;
@@ -390,7 +336,6 @@ form {
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-decoration: none;
     font-weight: 500;
-    /* margin: 20px 0; */
 }
 
 .add-skill-btn:hover,
@@ -399,22 +344,17 @@ form {
     transform: translateY(-2px);
 }
 
-/* Container for better positioning */
 .add-button-container {
     text-align: center;
     margin: 20px 0;
     padding: 20px;
 }
 
-/* Contact section */
 .contact-section {
     padding: 80px 40px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.1);
-
-    /* margin: 8rem auto 4rem auto; Added top margin to move it down */
-    margin: 0; /* Modified */
-
+    margin: 0;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
@@ -454,14 +394,6 @@ form {
     border-radius: 0.5rem;
     background-color: white;
     color: #2c3e50;
-    /* margin-bottom: 1rem; */
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: #4F46E5;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
 }
 
 .contact-form textarea {
@@ -486,27 +418,22 @@ form {
 }
 
 .contact-details {
-    position: relative;  /* Changed from absolute to relative */
+    position: relative;
     padding: 10px;
     font-size: 1rem;
-    margin: 40px 0;  /* Add margin for spacing */
-    /* margin-bottom: 10px; */
+    margin: 40px 0;
 }
 
-
-/* Footer */
 footer {
-    /* background-color: rgba(44, 62, 80, 0.8);  Semi-transparent dark blue */
     color: white;
     text-align: center;
     padding: 10px;
-    margin-top: 40px;  /* Reduced top margin */
+    margin-top: 40px;
     width: 100%;
-    backdrop-filter: blur(5px);  /* Reduced blur effect */
-    font-size: 0.9rem;  /* Slightly smaller font size */
+    backdrop-filter: blur(5px);
+    font-size: 0.9rem;
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
     .hero {
         padding: 60px 40px;
@@ -536,9 +463,8 @@ footer {
         max-width: 200px;
     }
 
-    contact-section {
+    .contact-section {
         padding: 40px 20px;
-        margin: 4rem auto 2rem auto;
     }
 
     .contact-section h2 {
@@ -546,22 +472,15 @@ footer {
     }
 
     .contact-details {
-        margin: 30px 0;  /* Slightly less margin on mobile */
+        margin: 30px 0;
     }
-    
 
     footer {
-        margin-top: 30px;  /* Slightly less margin on mobile */
+        margin-top: 30px;
         padding: 8px;
     }
     
     body {
-        padding-bottom: 30px;  /* Less padding on mobile */
+        padding-bottom: 30px;
     }
-
-
-    
-    
-    
-    
 }

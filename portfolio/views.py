@@ -135,23 +135,3 @@ def skill_delete(request, pk):
         return redirect('skill_list')
     return render(request, 'portfolio/skill_confirm_delete.html', {'skill': skill})
 
-# PDF Export View
-def export_portfolio_pdf(request):
-    template = get_template('portfolio/portfolio_pdf.html')
-    
-    projects = Project.objects.all()
-    skills = Skill.objects.all().order_by('category', 'name')
-    
-    html = template.render({
-        'projects': projects,
-        'skills': skills,
-    })
-    
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="portfolio.pdf"'
-    
-    pisa_status = pisa.CreatePDF(html, dest=response)
-    
-    if pisa_status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
