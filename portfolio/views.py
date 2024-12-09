@@ -80,7 +80,7 @@ def project_create(request):
             return redirect('projects')
     else:
         form = ProjectForm()
-    return render(request, 'portfolio/project_form.html', {'form': form, 'form_title': 'Create Project'})
+    return render(request, 'portfolio/project_form.html', {'form': form})
 
 @staff_member_required
 @csrf_protect
@@ -95,7 +95,7 @@ def project_edit(request, pk):
             return redirect('projects')
     else:
         form = ProjectForm(instance=project)
-    return render(request, 'portfolio/project_form.html', {'form': form, 'form_title': 'Edit Project'})
+    return render(request, 'portfolio/project_form.html', {'form': form})
 
 @staff_member_required
 @csrf_protect

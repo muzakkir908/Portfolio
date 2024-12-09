@@ -1,14 +1,15 @@
 {% extends 'portfolio/base.html' %}
 
 {% block content %}
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Muzakkir Pathan's Portfolio</h1>
-            <h2>Python Developer | Cloud Computing MSc</h2>
-            <p class="professional-summary">
-                Python Developer with 3 years of experience in data extraction, processing, and automation...
-            </p>
-            <a href="contact" class="btn">Get in Touch</a>
+<section class="hero-section">
+    <div class="hero-container">
+        <h1 class="hero-title">Welcome to Muzakkir Pathan's Portfolio</h1>
+        <div class="hero-subtitle">Python Developer | Cloud Computing MSc</div>
+        <div class="hero-description">
+            Python Developer with 3 years of experience in data extraction, processing, and automation. 
+            Specializing in building robust applications and cloud solutions.
         </div>
-    </section>
+        <a href="{% url 'contact' %}" class="cta-button">Get in Touch</a>
+    </div>
+</section>
 {% endblock %}

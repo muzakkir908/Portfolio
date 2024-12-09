@@ -13,11 +13,9 @@
                     {% if project.image %}
                         <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
                     {% else %}
-                        <div class="no-image">
-                            <i class="fas fa-image"></i>
-                            <span>No image available</span>
-                        </div>
+                        <div class="no-image">No Image Available</div>
                     {% endif %}
+
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">{{ project.title }}</h3>

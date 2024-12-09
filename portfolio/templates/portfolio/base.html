@@ -4,26 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}MPP{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
-    <link rel="stylesheet" href="{% static 'portfolio/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'portfolio/style.css' %}">
+    <title>{% block title %}MP{% endblock %}</title>
 </head>
-<body class="font-inter bg-gradient-to-r from-indigo-500 to-pink-500 text-white min-h-screen flex flex-col">
-    <nav class="bg-white/20 backdrop-blur-md py-4 fixed top-0 w-full z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <a href="{% url 'home' %}" class="text-white font-bold text-2xl -ml-4 sm:ml-0 pl-2">MPP</a>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'home' %}" class="logo">MP</a>
             
-            <div class="space-x-6 flex items-center">
-                <a href="{% url 'home' %}" class="text-white hover:text-gray-300 transition-colors duration-300 font-medium">Home</a>
-                <a href="{% url 'skill_list' %}" class="text-white hover:text-gray-300 transition-colors duration-300 font-medium">Skills</a>
-                <a href="{% url 'projects' %}" class="text-white hover:text-gray-300 transition-colors duration-300 font-medium">Projects</a>
-                <a href="{% url 'contact' %}" class="text-white hover:text-gray-300 transition-colors duration-300 font-medium">Contact</a>
+            <div class="nav-links">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'skill_list' %}">Skills</a>
+                <a href="{% url 'projects' %}">Projects</a>
+                <a href="{% url 'contact' %}">Contact</a>
                 {% if request.user.is_staff %}
-                    <form method="post" action="{% url 'logout' %}" class="m-0 p-0">
+                    <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors duration-300">
-                            Sign Out
-                        </button>
+                        <button type="submit" class="logout-btn">Sign Out</button>
                     </form>
                 {% endif %}
             </div>
@@ -31,22 +29,22 @@
     </nav>
 
     {% if messages %}
-        <div class="fixed top-16 left-0 right-0 z-50">
+        <div class="messages">
             {% for message in messages %}
-                <div class="bg-{% if message.tags %}{{ message.tags }}{% else %}blue{% endif %}-500 text-white px-4 py-3 mb-4 text-center">
+                <div class="message {% if message.tags %}message-{{ message.tags }}{% endif %}">
                     {{ message }}
                 </div>
             {% endfor %}
         </div>
     {% endif %}
 
-    <main class="flex-grow pt-20">
+    <main>
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer class="bg-white/20 backdrop-blur-md py-6 mt-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <footer>
+        <div class="footer-content">
             <p>&copy; 2024 Muzakkir Pathan. All rights reserved.</p>
         </div>
     </footer>
